@@ -12,7 +12,7 @@ if __name__=="__main__":
     df = pd.read_csv(DATA_FILE_PATH)
     print(f"Rows and Columns: {df.shape}")
 
-    #Convert dataframe to json so that we can dump thesee records in mongodb  
+    #Convert dataframe to json so that we can dump these records in mongodb  
     df.reset_index(drop=True,inplace=True)
 
     json_record = list(json.loads(df.T.to_json()).values())

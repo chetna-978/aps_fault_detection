@@ -15,6 +15,5 @@ python main.py
 ```
 ### Git version
 
-'''bash
+
 git --version
-'''
