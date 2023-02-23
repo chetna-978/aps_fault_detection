@@ -1,3 +1,4 @@
+
 from sensor import utils
 from sensor.entity import config_entity
 from sensor.entity import artifact_entity
@@ -16,6 +17,9 @@ class DataIngestion:
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
             raise SensorException(e, sys)
+
+    def jls_extract_def(self):
+        return "split dataset into train and test set"
 
     def initiate_data_ingestion(self)->artifact_entity.DataIngestionArtifact:
         try:
@@ -39,7 +43,7 @@ class DataIngestion:
             #Save df to feature store folder
             df.to_csv(path_or_buf=self.data_ingestion_config.feature_store_file_path,index=False,header=True)
 
-
+            
             logging.info("split dataset into train and test set")
             #split dataset into train and test set
             train_df,test_df = train_test_split(df,test_size=self.data_ingestion_config.test_size,random_state=42)
@@ -69,4 +73,4 @@ class DataIngestion:
 
 
 
-        
+

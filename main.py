@@ -1,18 +1,12 @@
-from sensor.logger import logging
-from sensor.exception import SensorException
-from sensor.utils import get_collection_as_dataframe
-import sys,os
-from sensor.entity import config_entity
-from sensor.components.data_ingestion import DataIngestion
+from sensor.pipeline.training_pipeline import start_training_pipeline
+from sensor.pipeline.batch_prediciton import start_batch_prediction
 
+file_path="/config/workspace/aps_failure_training_set1.csv"
+print(__name__)
 if __name__=="__main__":
      try:
-          training_pipeline_config = config_entity.TrainingPipelineConfig()
-
-          #data ingestion
-          data_ingestion_config  = config_entity.DataIngestionConfig(training_pipeline_config=training_pipeline_config)
-          print(data_ingestion_config.to_dict())
-          data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
-          data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
+          #start_training_pipeline()
+          output_file = start_batch_prediction(input_file_path=file_path)
+          print(output_file)
      except Exception as e:
           print(e) 
